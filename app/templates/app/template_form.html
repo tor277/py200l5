@@ -19,15 +19,46 @@
 					<h4 class="text-center mb-4">
 						Заголовок вашей формы
 					</h4>
-					<form method="post">
+					<form action="", method="post">
                         {% csrf_token %}
 						<!-- Запишите здесь тег {% csrf_token %} -->
 
                         <label for="my_text">Введи своё имя</label>  <!--for="my_text" это привязка к объекту с id="my_text", id - всегда должен быть уникален во всем HTML документе-->
                         <div class="form-input">  <!-- Блок для оборачивания строки формы -->
                             <span><i class="fa fa-id-card"></i></span>  <!-- Fontawesom картинка в строке ввода-->
-							<input type="text" id="my_text" name="my_text" placeholder="Иван" required>  <!-- Строка ввода-->
+							<input type="text" id="my_text" name="my_text" placeholder="Петя" required>  <!-- Строка ввода-->
 						</div>
+
+						<label for="my_password">Введите пароль</label>
+                        <div class="form-input">
+							<span><i class="fa fa-key"></i></span>
+                            <input type="password" id="my_password" name="my_password" placeholder="Пароль" required></input>
+                        </div>
+
+						<label for="my_email">Введите email</label>
+                        <div class="form-input">
+							<span><i class="fa fa-envelope"></i></span>
+                            <input type="email" id="my_email" name="my_email" placeholder="Почта" required></input>
+                        </div>
+
+						<label for="my_date">Введите дату</label>
+                        <div class="form-input">
+							<span><i class="fa fa-braille"></i></span>
+                            <input type="date" id="my_date" name="my_date" placeholder="Дата" required></input>
+                        </div>
+
+						<label for="my_number">Введите любое целое число</label>
+                        <div class="form-input">
+							<span><i class="fa fa-pencil-square-o"></i></span>
+                            <input type="number" id="my_number" name="my_number" placeholder="Целое число" required></input>
+                        </div>
+
+						<label for="my_checkbox">Переключатель</label>
+                        <div class="form-input">
+<!--							<span><i class="fa fa-id-card"></i></span>-->
+                            <input type="checkbox" id="my_checkbox" name="my_checkbox" placeholder="Переключатель" required></input>
+                        </div>
+
                         <!-- Поле с выбором -->
                         <label for="my_select">Выберите свои знания в Python</label>
                         <div class="form-input">
@@ -44,6 +75,10 @@
                             <textarea id="my_textarea" name="my_textarea" rows="10" placeholder="Начни писать здесь" required></textarea>
                         </div>
 
+
+
+
+
                         <!-- Добавьте своих полей --------------------------------------------------------------------->
                         <!-- Сформируйте и заполните нужные строки ввода (оберните их <div class="form-input"> как показано выше. Это нужно чтобы были одинаковые стили)-->
 
@@ -59,7 +94,12 @@
                         <!--------------------------------------------------------------------------------------------->
 
                         <!-- В форме всегда присутствует кнопка чтобы что-то отправить. Кнопку не изменять! -->
-						<div class="mb-3"> 
+						{% if form.errors %}
+							<div class="mb-3 d-flex align-items-center">
+								<span style="color: red; font-size: 16px">{{ form.errors }}</span>
+							</div>
+						{% endif %}
+						<div class="mb-3">
 							<button type="submit" class="btn btn-block">
 								Отправить данные
 							</button>
